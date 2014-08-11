@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Google Suggestion Guessing game">
     <meta name="author" content="Matthew Gold">
-    <link rel="shortcut icon" href="Images/favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
 
     <title>Google Feud</title>
 
@@ -33,17 +33,19 @@
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>-->
-        <h3 class="text-muted">Search Engine Feud <small class="subtitle"> Guess the most popular google searches!</small></h3>
+        <h3 class="text-muted">Google Feud <small class="subtitle"> Guess the most popular google searches in real time!</small></h3>
       </div>
       
       <div class="jumbotron">
-		  <p data-bind="visible: !showInput(), text: question() + ' ______'"></p>
-		  <p data-bind="visible: showInput"><input type="text" style="width:100%;" data-bind="value: questionInput, valueUpdate: 'input', enterPress: loadInput" placeholder="" /></p>
-		  <p><input type="text" id="txtGuess" style="width:100%;" data-bind="value: guessInput, valueUpdate: 'input', enterPress: function(){tryGuess($('#txtGuess'))}" placeholder="Enter a guess..." /></p>
+		<div data-bind="transition: showInput">
+		  <p data-bind="text: question() + ' ______'"></p>
+		  <p><input type="text" id="qInput" style="width:100%;" data-bind="value: questionInput, valueUpdate: 'input', enterPress: loadInput" placeholder="" /></p>
+		</div>
+		  <p><input type="text" id="txtGuess" style="width:100%;" data-bind="value: guessInput, valueUpdate: 'input', enterPress: function(){tryGuess($('#txtGuess'))}" placeholder="Type a guess and press enter..." /></p>
 		  <div class="row">
 		  	<div class="col-xs-12"><p class="pull-right">
 		  	<button class="btn btn-default" data-bind="click: loadRandom"><i class="fa fa-fw fa-random"></i> Random Question</button>
-		  	<button class="btn btn-primary" data-bind="click: function(){showInput(true);}"><i class="fa fa-fw fa-pencil"></i> Custom Question</button>
+		  	<button class="btn btn-primary" data-bind="click: function(){showInput(true); $('#qInput')[0].select()}"><i class="fa fa-fw fa-pencil"></i> Custom Question</button>
 		  </p>
 		  </div></div>
 		  <!--<p><a class="btn btn-primary btn-lg" role="button" data-bind="click: loadInput">Submit</a></p>-->
@@ -102,14 +104,20 @@
 	var suggestCallBack = function (data) {
 		var suggestions = [];
 		$.each(data[1], function(key, val) {
-			var sug = val[0].substring((viewModel.question().trim()).length).trim();
+			var sug = val[0].toLowerCase().replace(viewModel.question().toLowerCase().trim(), '').trim();
 			if(sug && suggestions.length < 8) {
 				suggestions.push(new GFeud.Answer(sug));
 			}
 		});
+		$('.answers').transition({perspective: '1500px', rotateX: '90deg', easing: 'in', duration: 300}, function() {
+			$(this).css({rotateX: '-90deg'});
+			viewModel.answers(suggestions);
+			$('.answers').transition({perspective: '1500px', rotateX: '0deg', easing: 'out', duration: 300}, function() {
+				$('.face.back').textfill();
+			});
+		});
 		
-		viewModel.answers(suggestions);
-		$('.face.back').textfill();
+		
 	};
 	var viewModel = new GFeud.GFeudModel();
 	ko.applyBindings(viewModel);
