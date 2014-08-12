@@ -44,7 +44,9 @@
 			var children = $(element).children();
 			if(ko.utils.unwrapObservable(valueAccessor())) {
 				$(children[0]).fadeOut(150, function() {
-					$(children[1]).fadeIn(150);
+					$(children[1]).fadeIn(150, function() {
+						$('#qInput')[0].select();
+					});
 				});
 			}
 			else {

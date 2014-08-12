@@ -92,7 +92,13 @@ var GFeud;
 		        if (b.indexOf(e) !== -1) return true;
 		    });
 		}
-
+		
+		self.searchGoogle = function(card) {
+			if(card.flipped()) {
+				window.open('https://www.google.com/#q=' + escape(self.question().trim() + ' ' + card.text().trim()), '_blank');
+			}
+		};
+		
 	};
     GFeud.GFeudModel = GFeudModel;
 })(jQuery, GFeud || (GFeud = {}));

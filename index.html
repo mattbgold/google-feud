@@ -45,7 +45,7 @@
 		  <div class="row">
 		  	<div class="col-xs-12"><p class="pull-right">
 		  	<button class="btn btn-default" data-bind="click: loadRandom"><i class="fa fa-fw fa-random"></i> Random Question</button>
-		  	<button class="btn btn-primary" data-bind="click: function(){showInput(true); $('#qInput')[0].select()}"><i class="fa fa-fw fa-pencil"></i> Custom Question</button>
+		  	<button class="btn btn-primary" data-bind="click: function(){showInput(true);}"><i class="fa fa-fw fa-pencil"></i> Custom Question</button>
 		  </p>
 		  </div></div>
 		  <!--<p><a class="btn btn-primary btn-lg" role="button" data-bind="click: loadInput">Submit</a></p>-->
@@ -57,7 +57,7 @@
 				<div class="flip" data-bind="peek: $data.flipped"> 
 					<div class="card" data-bind="css: {flipped: $data.flipped}"> 
 						<div class="face front"><span data-bind="text: $index()+1"></span></div> 
-						<div class="face back"><span data-bind="text: $data.text"></span></div> 
+						<div class="face back"><span data-bind="text: $data.text, click: function(){$root.searchGoogle($data)}"></span></div> 
 					</div> 
 				</div> 
 				<!-- /ko -->
@@ -67,7 +67,7 @@
 				<div class="flip" data-bind="peek: $data.flipped"> 
 					<div class="card" data-bind="css: {flipped: $data.flipped}"> 
 						<div class="face front"><span data-bind="text: $index()+1"></span></div> 
-						<div class="face back"><span data-bind="text: $data.text"></span></div> 
+						<div class="face back"><span data-bind="text: $data.text, click: function(){$root.searchGoogle($data)}"></span></div> 
 					</div> 
 				</div> 
 				<!-- /ko -->
