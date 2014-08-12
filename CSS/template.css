@@ -55,7 +55,7 @@ body {
 }
 .answers {
 	padding:5px;
-	height:410px;
+	min-height:410px;
 	border-radius: 5px;
 }
 

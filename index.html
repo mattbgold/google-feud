@@ -104,7 +104,7 @@
 	var suggestCallBack = function (data) {
 		var suggestions = [];
 		$.each(data[1], function(key, val) {
-			var sug = val[0].toLowerCase().replace(viewModel.question().toLowerCase().trim(), '').trim();
+			var sug = GFeud.removePunctuation(val[0].toLowerCase()).replace(GFeud.removePunctuation(viewModel.question().toLowerCase().trim()), '').trim();
 			if(sug && suggestions.length < 8) {
 				suggestions.push(new GFeud.Answer(sug));
 			}
