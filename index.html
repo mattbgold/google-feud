@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Google Suggestion Guessing game">
+    <meta name="description" content="Play Family Feud against the top Google autocomplete suggestions. Can you guess the most common searches? The answers may surprise you!">
+	<meta name="keywords" content="google, autocomplete, auto complete, family feud, google feud, google suggest, autocomplete feud, fail, autocorrect, google suggestions, game" />
     <meta name="author" content="Matthew Gold">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>Google Feud</title>
+    <title>Google Feud - Play Family Feud with Google Search autocomplete suggestions</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootswatch/bootstrap.cyborg.min.css" rel="stylesheet" media="screen" title="main">
@@ -25,7 +26,14 @@
 </head>
 
 <body>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="container">
       <div class="header">
         <!--<ul class="nav nav-pills pull-right">
@@ -33,7 +41,7 @@
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>-->
-        <h3 class="text-muted">Google Feud <small class="subtitle"> Guess the most popular google searches in real time!</small></h3>
+        <h3 class="text-muted">Google Feud<small class="subtitle"> Guess the most popular google searches in real time!</small></h3>
       </div>
       
       <div class="jumbotron">
@@ -75,7 +83,9 @@
 		</div>
 		<br/>
       <div class="footer">
-        <p>&copy; Matt Gold 2014</p>
+		<div class="fb-like" data-href="http://feud.mgoldgames.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<p>Google Feud - Play family feud with the top google search autocomplete suggestions.</p>
+		<p>&copy; <a href="http://mgoldgames.com">Matt Gold 2014</a></p>
       </div>
 
     </div> <!-- /container -->
